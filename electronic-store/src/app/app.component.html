@@ -1,0 +1,27 @@
+<es-nav>
+  <div right>
+    <button aria-label="Card" mat-icon-button>
+      <mat-icon>shopping_card</mat-icon>
+    </button>
+  </div>
+  <div class="products">
+    <h1>Products</h1>
+    <mat-card class="product-card" *ngFor = "let product of products$|async; let i = index">
+      <mat-card-actions>
+        <es-add-to-card></es-add-to-card>
+      </mat-card-actions>
+      <img [attr.alt]="product.name" mat-card-image [src]="product.images[0]">
+      <mat-card-content>
+        <mat-card-title>{{product.name}}</mat-card-title>
+        <mat-card-subtitle>{{product.category}}</mat-card-subtitle>
+        <mat-card-subtitle class="sale-price">
+          {{product.salePrice|currency}}
+          <span class="original-price">
+            {{product.price|currency}}
+          </span>
+        </mat-card-subtitle>
+        <p>{{product.description}}</p>
+      </mat-card-content>
+    </mat-card>
+  </div>
+</es-nav>
