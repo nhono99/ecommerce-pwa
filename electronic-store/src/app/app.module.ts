@@ -17,6 +17,8 @@ import {
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
+import { CartComponent } from './cart/cart.component';
+import { SubTotalPipe } from './sub-total.pipe';
 
 
 const matDesignModules = [
@@ -30,10 +32,13 @@ const matDesignModules = [
   MatSnackBarModule];
 
 @NgModule({
+  entryComponents: [CartComponent],
   declarations: [
     AppComponent,
     NavComponent,
-    AddToCartComponent
+    AddToCartComponent,
+    CartComponent,
+    SubTotalPipe
   ],
   imports: [
     BrowserModule,

@@ -9,7 +9,10 @@ export class AddToCartComponent implements OnInit {
   @Input() count = 0;
   @Output() updateCount = new EventEmitter();
 
-  constructor() { }
+  constructor(
+  ) {
+
+   }
 
   ngOnInit() {
   }

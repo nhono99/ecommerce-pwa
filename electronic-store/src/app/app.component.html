@@ -1,14 +1,15 @@
 <es-nav>
   <div right>
-    <button aria-label="Card" mat-icon-button>
-      <mat-icon>shopping_card</mat-icon>
+    <button aria-label="Card" mat-icon-button (click)="openCart()">
+      <mat-icon [matBadge]="cart.cartTotal" matBadgeColor="accent" matBadgePosition="before">shopping_cart</mat-icon>
     </button>
   </div>
   <div class="products">
     <h1>Products</h1>
     <mat-card class="product-card" *ngFor = "let product of products$|async; let i = index">
       <mat-card-actions>
-        <es-add-to-card></es-add-to-card>
+        <es-add-to-cart [count]="cart[product._id]?.count || 0" (updateCount)="onAddProduct($event, product)">
+        </es-add-to-cart>
       </mat-card-actions>
       <img [attr.alt]="product.name" mat-card-image [src]="product.images[0]">
       <mat-card-content>
