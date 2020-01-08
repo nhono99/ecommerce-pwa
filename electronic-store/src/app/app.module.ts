@@ -19,6 +19,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
 import { CartComponent } from './cart/cart.component';
 import { SubTotalPipe } from './sub-total.pipe';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 
 const matDesignModules = [
@@ -45,7 +47,8 @@ const matDesignModules = [
     BrowserAnimationsModule,
     LayoutModule,
     matDesignModules,
-    HttpClientModule
+    HttpClientModule,
+    ServiceWorkerModule.register('ngsw-worker.js', { enabled: environment.production })
   ],
   providers: [],
   bootstrap: [AppComponent]
