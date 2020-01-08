@@ -13,7 +13,10 @@ import {
   MatToolbarModule,
   MatCardModule,
   MatBadgeModule,
-  MatSnackBarModule
+  MatSnackBarModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatFormFieldModule
 } from '@angular/material';
 import { HttpClientModule } from '@angular/common/http';
 import { AddToCartComponent } from './add-to-cart/add-to-cart.component';
@@ -31,6 +34,9 @@ const matDesignModules = [
   MatListModule,
   MatCardModule,
   MatBadgeModule,
+  MatSelectModule,
+  MatOptionModule,
+  MatFormFieldModule,
   MatSnackBarModule];
 
 @NgModule({

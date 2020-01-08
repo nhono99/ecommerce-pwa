@@ -3,7 +3,8 @@ import { ProductsService } from './shared/products.service';
 import { Observable } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { CartComponent } from './cart/cart.component';
-import { MatDialog } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
+import { SwUpdate } from '@angular/service-worker';
 
 @Component({
   selector: 'es-root',
@@ -19,11 +20,21 @@ export class AppComponent implements OnInit {
   constructor(
     private productsService: ProductsService,
     private cartService: CartService,
-    private matDialog: MatDialog
+    private matDialog: MatDialog,
+    private swUpdate: SwUpdate,
+    private matSnackBar: MatSnackBar
   ) {
     this.products$ = this.productsService.getProducts();
     this.cart$ = this.cartService.cart$.subscribe(
       cart => this.cart = cart);
+
+    swUpdate.available.subscribe(e => {
+      this.matSnackBar.open('New update available', 'Install Now', {
+        duration: 4000
+      }).onAction().subscribe(() => {
+        swUpdate.activateUpdate().then(() => location.reload());
+      });
+    });
   }
 
   onAddProduct(count, product) {
