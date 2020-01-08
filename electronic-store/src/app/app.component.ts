@@ -1,7 +1,7 @@
 import { CartService } from './shared/cart.service';
 import { ProductsService } from './shared/products.service';
 import { Observable } from 'rxjs';
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CartComponent } from './cart/cart.component';
 import { MatDialog } from '@angular/material';
 
@@ -10,7 +10,7 @@ import { MatDialog } from '@angular/material';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent {
+export class AppComponent implements OnInit {
   title = 'electronic-store';
   products$: Observable<any>;
   cart$: Observable<any>;
@@ -34,5 +34,17 @@ export class AppComponent {
     this.matDialog.open(CartComponent, {
       width: '500px',
     });
+  }
+
+  displayNetworkStatus() {
+    if (navigator.onLine) {
+      document.querySelector('body').style.filter = 'grayscale(1)';
+    }
+  }
+
+  ngOnInit(): void {
+    this.displayNetworkStatus();
+    window.addEventListener('online', this.displayNetworkStatus);
+    window.addEventListener('offline', this.displayNetworkStatus);
   }
 }
