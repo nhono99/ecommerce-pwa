@@ -24,6 +24,7 @@ export class AppComponent implements OnInit {
     private swUpdate: SwUpdate,
     private matSnackBar: MatSnackBar
   ) {
+
     this.products$ = this.productsService.getProducts();
     this.cart$ = this.cartService.cart$.subscribe(
       cart => this.cart = cart);
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit {
         swUpdate.activateUpdate().then(() => location.reload());
       });
     });
+
   }
 
   onAddProduct(count, product) {
@@ -58,4 +60,5 @@ export class AppComponent implements OnInit {
     window.addEventListener('online', this.displayNetworkStatus);
     window.addEventListener('offline', this.displayNetworkStatus);
   }
+
 }
